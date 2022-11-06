@@ -1,0 +1,11 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Push and Pull Rasp Pi",
+            "request": "launch",
+            "type": "node-terminal",
+            "command": "git pull; git add .; git commit; git push; ssh hackathon_pi \"cd ./flash/; git pull; cd ./Embedded/; sudo python3 main.py\""
+        }
+    ]
+}

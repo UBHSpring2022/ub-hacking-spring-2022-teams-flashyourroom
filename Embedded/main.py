@@ -50,6 +50,7 @@ while True:
     if ((time.time() - time_start) > 1.0):
         time_start = time.time()
 
+        response = None
         try:
             response = requests.get(api_url)
         except:
@@ -71,7 +72,7 @@ while True:
 
                     index = str(i+1)
                     for key in json[index]:
-                        area_led[key] = str(json[index][key])
+                        area_led[i][key] = str(json[index][key])
 
             color(area_led["red"], area_led["green"], area_led["blue"])
             pixels.show()
