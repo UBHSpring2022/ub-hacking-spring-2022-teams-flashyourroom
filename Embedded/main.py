@@ -69,7 +69,7 @@ while True:
                     for key in json[index]:
                         area_led[key] = str(json[key])
             else:
-                for i in range(len(area_led.keys())):
+                for i in range(len(area_led)):
                     pixels.brightness = json["1"]["brightness"]
 
                     index = str(i+1)
