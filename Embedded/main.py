@@ -42,11 +42,7 @@ pixels = neopixel.NeoPixel(
 def color(red, green, blue, led_region):
     for i in led_region:
         # print(i, red, green, blue)
-        pixels[i] = (
-            red,
-            green,
-            blue
-            )
+        pixels[i] = (int(red), int(green), int(blue))
 
 time_start = time.time()
 previous_res = None
