@@ -5,7 +5,7 @@
             "name": "Push and Pull Rasp Pi",
             "request": "launch",
             "type": "node-terminal",
-            "command": "scp .\\main.py hackathon_pi:~/; ssh hackathon_pi; sudo python3 main.py"
+            "command": "scp .\\main.py hackathon_pi:~/; ssh hackathon_pi 'sudo python3 main.py'"
         }
     ]
 }

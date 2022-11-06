@@ -7,7 +7,6 @@ import math
 # Web API to grab from
 # http://3.91.155.146:5000/
 api_url = 'https://ycdpzmlfu8.execute-api.us-east-1.amazonaws.com/beta/data'
-# api_url =
 
 # Choose an open pin connected to the Data In of the NeoPixel strip, i.e. board.D18
 # NeoPixels must be connected to D10, D12, D18 or D21 to work.
