@@ -28,6 +28,8 @@ area = [
 area_led = [
     {"red":"", "green":"", "blue":""},
     {"red":"", "green":"", "blue":""},
+    {"red":"", "green":"", "blue":""},
+    {"red":"", "green":"", "blue":""}
 ]
 
 json_ints = ["red", "green", "blue"]
@@ -41,6 +43,7 @@ def color(red, green, blue, led_region):
     green = int(green)
     blue = int(blue)
     for i in led_region:
+        # print(i, red, green, blue)
         pixels[i] = (red, green, blue)
 
 time_start = time.time()
@@ -62,7 +65,7 @@ while True:
             json = response.json()
 
             if ("red" in json.keys()):
-                pixels.brightness = json["brightness"]
+                pixels.brightness = float(json["brightness"])
 
                 for i in range(area_led[key]):
                     index = str(i+1)
@@ -70,14 +73,15 @@ while True:
                         area_led[key] = str(json[key])
             else:
                 for i in range(len(area_led)):
-                    pixels.brightness = json["1"]["brightness"]
+                    pixels.brightness = float(json["1"]["brightness"])
 
                     index = str(i+1)
                     for key in area_led[i].keys():
-                        print(area_led[i].keys())
+                        print(f"i: {index} key:{key} {json[index][key]})")
                         area_led[i][key] = str(json[index][key])
 
             for i in range(len(area_led)):
+                print(area_led[i])
                 color(area_led[i]["red"], area_led[i]["green"], area_led[i]["blue"], area[i])
 
-            pixels.show()
+        pixels.show()

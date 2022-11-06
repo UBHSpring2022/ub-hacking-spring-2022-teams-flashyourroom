@@ -23,33 +23,33 @@ Content-Type: application/json
   "1": {
     "area": 0,
     "blue": 0,
-    "brightness": 0,
+    "brightness": "0.5",
     "frequency": 0,
     "green": 0,
-    "red": 0
+    "red": 255
   },
   "2": {
     "area": 0,
     "blue": 0,
     "brightness": 0,
     "frequency": 0,
-    "green": 0,
+    "green": 255,
     "red": 0
   },
   "3": {
     "area": 0,
     "blue": 255,
-    "brightness": 0,
+    "brightness": 0.1,
     "frequency": 0,
     "green": 100,
     "red": 0
   },
   "4": {
     "area": 0,
-    "blue": 0,
+    "blue": 255,
     "brightness": 0,
     "frequency": 0,
     "green": 0,
-    "red": 0
+    "red": 128
   }
 }
