@@ -37,6 +37,9 @@ pixels = neopixel.NeoPixel(
 )
 
 def color(red, green, blue):
+    red = int(red)
+    green = int(green)
+    blue = int(blue)
     for i in range(num_pixels):
         pixels[i] = (red, green, blue)
 
@@ -55,12 +58,6 @@ while True:
         if (response and response != previous_res):
             json = response.json()
 
-            for key in json:
-                if (key in json_ints):
-                    json[key] = int(json[key])
-                else:
-                    json[key] = float(json[key])
-
             if ("red" in json.keys()):
                 pixels.brightness = json["brightness"]
 
@@ -68,7 +65,6 @@ while True:
                     index = str(i+1)
                     for key in json[index]:
                         area_led[key] = json[key]
-
             else:
                 for i in range(len(area)):
                     pixels.brightness = json["1"]["brightness"]
