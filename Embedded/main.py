@@ -77,7 +77,7 @@ while True:
                     area_led[i][key] = str(json[index][key])
                     area_led[i][key] = alpha * int(area_led[i][key])
 
-        for i in range(len(area_led)):
-                    color(area_led[i]["red"], area_led[i]["green"], area_led[i]["blue"], area[i])
-        pixels.show()
+                for i in range(len(area_led)):
+                            color(area_led[i]["red"], area_led[i]["green"], area_led[i]["blue"], area[i])
+                pixels.show()
 
