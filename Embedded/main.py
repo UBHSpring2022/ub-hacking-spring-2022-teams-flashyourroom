@@ -20,10 +20,10 @@ ORDER = neopixel.RGB
 frequency = 0
 
 area = [
-    range(0, 25),
-    range(25, 50),
-    range(50, 75),
-    range(75, num_pixels)
+    range(0, num_pixels//4),
+    range(num_pixels//4, num_pixels//2),
+    range(num_pixels//2, 3*num_pixels//4),
+    range(3*num_pixels//4, num_pixels)
 ]
 
 area_led = [
