@@ -69,13 +69,13 @@ while True:
                     for key in json[index]:
                         area_led[key] = str(json[key])
             else:
-                for i in range(len(area_led[key])):
+                for i in range(len(area_led.keys())):
                     pixels.brightness = json["1"]["brightness"]
 
                     index = str(i+1)
                     for key in json.keys():
                         print(json.keys())
-                        area_led[i][key]# = str(json[index][key])
+                        area_led[i][key] = str(json[index][key])
 
             color(area_led["red"], area_led["green"], area_led["blue"])
             pixels.show()
