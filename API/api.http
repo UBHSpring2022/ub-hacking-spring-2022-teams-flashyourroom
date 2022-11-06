@@ -1,0 +1,61 @@
+GET http://3.91.155.146:5000/
+###
+GET http://127.0.0.1:5000/
+###
+OPTIONS  http://127.0.0.1:5000/
+Origin: http://127.0.0.1
+Access-Control-Request-Method: POST
+Access-Control-Request-Headers: Content-Type, Authorization "http://127.0.0.1:5000/"
+###
+OPTIONS http://3.91.155.146:5000/
+Origin: http://127.0.0.1
+Access-Control-Request-Method: POST
+Access-Control-Request-Headers: Content-Type, Authorization "http://3.91.155.146:5000/"
+###
+POST http://3.91.155.146:5000/ HTTP/1.1
+content-Type : application/json
+
+{
+
+    "brightness": "0.5",
+    "red": "55",
+    "green": "105",
+    "blue": "155",
+    "frequency": "2",
+    "area":"1"
+
+}
+
+###
+POST http://127.0.0.1:5000/ HTTP/1.1
+content-Type : application/json
+
+{
+
+    "1" :  {"brightness": "0.5",
+            "red": "55",
+            "green": "105",
+            "blue": "255",
+            "frequency": "2",
+            "area":"1"},
+     "2" :  { "brightness": "0.5",
+            "red": "55",
+            "green": "205",
+            "blue": "155",
+            "frequency": "2",
+            "area":"1"},
+     "3" :  { "brightness": "0.5",
+            "red": "55",
+            "green": "105",
+            "blue": "155",
+            "frequency": "2",
+            "area":"1"},
+     "4" :  { "brightness": "0.5",
+            "red": "55",
+            "green": "105",
+            "blue": "155",
+            "frequency": "2",
+            "area":"1"}
+
+
+}
