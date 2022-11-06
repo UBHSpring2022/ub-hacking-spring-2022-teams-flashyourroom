@@ -1,0 +1,29 @@
+GET http://3.91.155.146:5000/
+
+###
+
+POST http://3.91.155.146:5000/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "brightness": "0.5",
+    "red": "255",
+    "green": "0",
+    "blue": "0",
+    "frequency": "2",
+    "area": "1"
+}
+
+###
+
+POST http://3.91.155.146:5000/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "brightness": "0.1",
+    "red": "255",
+    "green": "0",
+    "blue": "0",
+    "frequency": "30",
+    "area": "1"
+}
