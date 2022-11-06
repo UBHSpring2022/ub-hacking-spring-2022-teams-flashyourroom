@@ -6,7 +6,8 @@ import math
 
 # Web API to grab from
 # http://3.91.155.146:5000/
-api_url = 'http://3.91.155.146:5000/'
+api_url = 'https://ycdpzmlfu8.execute-api.us-east-1.amazonaws.com/beta/data'
+# api_url =
 
 # Choose an open pin connected to the Data In of the NeoPixel strip, i.e. board.D18
 # NeoPixels must be connected to D10, D12, D18 or D21 to work.
@@ -66,9 +67,10 @@ while True:
 
         if (response and response != previous_res):
             json = response.json()
+            print(json, flush=True)
 
             for i in range(len(area_led)):
-                index = str(i+1)
+                index = str(float(i+1.0))
 
                 alpha = float(json[index]["brightness"])
                 area_led[i]["frequency"] = float(json[index]["frequency"])
@@ -76,7 +78,7 @@ while True:
                     alpha = 0
                 for key in area_led[i].keys():
                     area_led[i][key] = str(json[index][key])
-                    area_led[i][key] = alpha * int(area_led[i][key])
+                    area_led[i][key] = alpha * int(float(area_led[i][key]))
 
         for i in range(len(area_led)):
                     color(area_led[i]["red"], area_led[i]["green"], area_led[i]["blue"], area[i])
