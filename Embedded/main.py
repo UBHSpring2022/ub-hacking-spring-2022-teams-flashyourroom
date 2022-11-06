@@ -19,8 +19,10 @@ ORDER = neopixel.RGB
 frequency = 0
 
 area = [
-    range(0, 50),
-    range(50, num_pixels)
+    range(0, 25),
+    range(25, 50),
+    range(50, 75),
+    range(75, num_pixels)
 ]
 
 area_led = [
@@ -44,7 +46,12 @@ while True:
 
     if ((time.time() - time_start) > 1.0):
         time_start = time.time()
-        response = requests.get(api_url)
+
+        try:
+            response = requests.get(api_url)
+        except:
+            pass
+
         if (response and response != previous_res):
             json = response.json()
 
@@ -64,6 +71,8 @@ while True:
 
             else:
                 for i in range(len(area)):
+                    pixels.brightness = json["1"]["brightness"]
+
                     index = str(i+1)
                     for key in json[index]:
                         area_led[key] = json[index][key]
