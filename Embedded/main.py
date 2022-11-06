@@ -62,6 +62,7 @@ while True:
             response = requests.get(api_url)
         except:
             print("NO CONNECTION!!!", flush=True)
+            continue
 
         if (response and response != previous_res):
             json = response.json()
