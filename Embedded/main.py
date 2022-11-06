@@ -42,7 +42,11 @@ pixels = neopixel.NeoPixel(
 def color(red, green, blue, led_region):
     for i in led_region:
         # print(i, red, green, blue)
-        pixels[i] = (int(red), int(green), int(blue))
+        pixels[i] = (
+            red,
+            green,
+            blue
+            )
 
 time_start = time.time()
 previous_res = None
@@ -71,9 +75,8 @@ while True:
                     alpha = 0
                 for key in area_led[i].keys():
                     area_led[i][key] = str(json[index][key])
-                    area_led[i][key] = int(alpha * int(area_led[i][key]))
+                    area_led[i][key] = alpha * int(area_led[i][key])
 
-                for i in range(len(area_led)):
-                            color(area_led[i]["red"], area_led[i]["green"], area_led[i]["blue"], area[i])
-                pixels.show()
-
+        for i in range(len(area_led)):
+                    color(area_led[i]["red"], area_led[i]["green"], area_led[i]["blue"], area[i])
+        pixels.show()
