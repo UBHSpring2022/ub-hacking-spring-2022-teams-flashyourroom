@@ -2,6 +2,7 @@ import requests
 import time
 import board
 import neopixel
+import math
 
 # Web API to grab from
 # http://3.91.155.146:5000/
@@ -26,30 +27,31 @@ area = [
 ]
 
 area_led = [
-    {"red":"", "green":"", "blue":""},
-    {"red":"", "green":"", "blue":""},
-    {"red":"", "green":"", "blue":""},
-    {"red":"", "green":"", "blue":""}
+    {"red":"", "green":"", "blue":"", "frequency":0.0},
+    {"red":"", "green":"", "blue":"", "frequency":0.0},
+    {"red":"", "green":"", "blue":"", "frequency":0.0},
+    {"red":"", "green":"", "blue":"", "frequency":0.0}
 ]
 
 json_ints = ["red", "green", "blue"]
 
 pixels = neopixel.NeoPixel(
-    pixel_pin, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER
+    pixel_pin, num_pixels, brightness=1, auto_write=False, pixel_order=ORDER
 )
 
 def color(red, green, blue, led_region):
-    red = int(red)
-    green = int(green)
-    blue = int(blue)
     for i in led_region:
         # print(i, red, green, blue)
-        pixels[i] = (red, green, blue)
+        pixels[i] = (
+            red,
+            green,
+            blue
+            )
 
 time_start = time.time()
 previous_res = None
 
-print("LED Controller")
+print("LED Controller", flush=True)
 while True:
 
     if ((time.time() - time_start) > 1.0):
@@ -59,29 +61,23 @@ while True:
         try:
             response = requests.get(api_url)
         except:
-            pass
+            print("NO CONNECTION!!!", flush=True)
 
         if (response and response != previous_res):
             json = response.json()
 
-            if ("red" in json.keys()):
-                pixels.brightness = float(json["brightness"])
-
-                for i in range(area_led[key]):
-                    index = str(i+1)
-                    for key in json[index]:
-                        area_led[key] = str(json[key])
-            else:
-                for i in range(len(area_led)):
-                    pixels.brightness = float(json["1"]["brightness"])
-
-                    index = str(i+1)
-                    for key in area_led[i].keys():
-                        print(f"i: {index} key:{key} {json[index][key]})")
-                        area_led[i][key] = str(json[index][key])
-
             for i in range(len(area_led)):
-                print(area_led[i])
-                color(area_led[i]["red"], area_led[i]["green"], area_led[i]["blue"], area[i])
+                index = str(i+1)
 
+                alpha = float(json[index]["brightness"])
+                area_led[i]["frequency"] = float(json[index]["frequency"])
+                if (alpha < 0.05):
+                    alpha = 0
+                for key in area_led[i].keys():
+                    area_led[i][key] = str(json[index][key])
+                    area_led[i][key] = alpha * int(area_led[i][key])
+
+        for i in range(len(area_led)):
+                    color(area_led[i]["red"], area_led[i]["green"], area_led[i]["blue"], area[i])
         pixels.show()
+
