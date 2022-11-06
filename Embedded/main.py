@@ -45,6 +45,8 @@ def color(red, green, blue):
 
 time_start = time.time()
 previous_res = None
+
+print("LED Controller")
 while True:
 
     if ((time.time() - time_start) > 1.0):
@@ -67,7 +69,7 @@ while True:
                     for key in json[index]:
                         area_led[key] = str(json[key])
             else:
-                for i in range(len(area)):
+                for i in range(len(area_led[key])):
                     pixels.brightness = json["1"]["brightness"]
 
                     index = str(i+1)
